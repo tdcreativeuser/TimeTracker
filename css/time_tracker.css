@@ -1,0 +1,65 @@
+.round-button {
+  display:inline-block;
+  width:100px;
+  height:100px;    
+  border: 2px solid #f5f5f5;
+  border-radius: 50%;
+  color:#f5f5f5;    
+  box-shadow: 0 0 3px gray;
+  font-size:20px;
+  font-weight:bold;
+  margin: 20px;
+
+
+}
+
+.round-button:focus {
+  outline:0;
+}
+
+.round-button:hover {
+  background: #262626; /* not working*/
+}
+
+#start-button{
+  background: green;
+}
+
+#finish-button{
+  background: red;
+}
+
+.round-button:hover {
+  background: #262626;
+}
+
+#duration {
+  display: block;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.button-wrapper {
+
+
+  padding-top: 50px;
+}
+
+
+
+h1 {
+    font-size: 40px;
+    font-weight: normal;
+    text-align: left;
+    color: #FCFFF5;
+    background-color: #3E606F;
+    margin: 0;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+}

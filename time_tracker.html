@@ -1,32 +1,63 @@
 <!-- 
-	Developer Assignment version 0.0 ~ SP 
+	Developer Assignment version 0.1 ~ SP 
 
-	Click button to render current timestamp.
+	Click start button to initiate time, click finish to stop. Duration in 
+	minutes will be displayed.
+
+	Math.ceil doesn't seem to be working right - still getting long decimal fraction of time.
 -->
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Time Tracker</title>
+	<link rel="stylesheet" type="text/css" href="css/time_tracker.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<script>
+		// store the start time to localStorage
 		$(function(){
-
-			$('#time').click(function(){
-				var time = new Date();                
-				$('#time-track').val(time);  
+			$('#start-button').click(function(){
+				start_time = new Date();  
+				localStorage.setItem('start_time', start_time);              
 			});
+		});
 
-		}
-		);
+		// store the finish time to localStorage
+		$(function(){
+			$('#finish-button').click(function(){
+				finish_time = new Date();  
+				localStorage.setItem('finish_time', finish_time);	
+			});
+		});		
+
+		// calculate and display duration based on start and finish times in localStorage
+		$(function(){
+			$('#retrieve-duration').click(function(){
+				duration = Math.ceil(Date.parse(localStorage.finish_time)-Date.parse(localStorage.start_time))/60000;
+				$('#duration').text(duration + " mins");				
+			});
+		});		
 	</script>
 
 </head>
 <body>
-	<h1>Getting the time!</h1>
+	<div class="mainBanner">
+		<h1>
+			<em>TimeTracker</em>
+		</h1>
 
-	<input type="text" value="" id="time-track">
-	<input type="button" value="time" id="time">
+	</div>
+	
+	<div class="container">
+		<div class="button-wrapper">
+			<input class="round-button" type="button" value="Start" id="start-button">
+		</div>
+		<div class="button-wrapper">
+			<input class="round-button" type="button" value="Finish" id="finish-button">
+		</div>
+	</div>	
 
+	<input type="button" value="retrieve duration" id="retrieve-duration">
+	<p id="duration"></p>
 </body>
 </html>
