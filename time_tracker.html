@@ -12,52 +12,85 @@
 	<title>Time Tracker</title>
 	<link rel="stylesheet" type="text/css" href="css/time_tracker.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/button_actions.js"></script>
+	<script type="text/javascript" src="js/duration_object.js"></script>
 
-	<script>
-		// store the start time to localStorage
-		$(function(){
-			$('#start-button').click(function(){
-				start_time = new Date();  
-				localStorage.setItem('start_time', start_time);              
-			});
-		});
-
-		// store the finish time to localStorage
-		$(function(){
-			$('#finish-button').click(function(){
-				finish_time = new Date();  
-				localStorage.setItem('finish_time', finish_time);	
-			});
-		});		
-
-		// calculate and display duration based on start and finish times in localStorage
-		$(function(){
-			$('#retrieve-duration').click(function(){
-				duration = Math.ceil(Date.parse(localStorage.finish_time)-Date.parse(localStorage.start_time))/60000;
-				$('#duration').text(duration + " mins");				
-			});
-		});		
-	</script>
 
 </head>
 <body>
+
 	<div class="mainBanner">
 		<h1>
 			<em>TimeTracker</em>
 		</h1>
 
 	</div>
+
+	<form>
+		<div class="projects">
+			<input type="radio" name="project" value="projectA" id="projectA" />
+			<label for="projectA">Project A</label>
+			<div class="tasks">
+				<div>
+					<input type="radio" name="task" value="taskA0" id="taskA0"/>
+					<label for="taskA0">Task A0</label>
+				</div>
+				<div>
+					<input type="radio" name="task" value="taskA1" id="taskA1"/>
+					<label for="taskA1">Task A1</label>
+				</div>
+			</div>
+		</div>
+		<div class="projects">
+			<input type="radio" name="project" value="projectB" id="projectB" />
+			<label for="projectB">Project B</label>
+			<div class="tasks">
+				<div>
+					<input type="radio" name="task" value="taskB0" id="taskB0"/>
+					<label for="taskB0">Task B0</label>
+				</div>
+				<div>
+					<input type="radio" name="task" value="taskB1" id="taskB1"/>
+					<label for="taskB1">Task B1</label>
+				</div>
+			</div>
+		</div>
+		<div class="projects">
+			<input type="radio" name="project" value="projectC" id="projectC" />
+			<label for="projectC">Project C</label>
+			<div class="tasks">
+				<div>
+					<input type="radio" name="task" value="taskC0" id="taskC0"/>
+					<label for="taskC0">Task C0</label>
+				</div>
+				<div>
+					<input type="radio" name="task" value="taskC1" id="taskC1"/>
+					<label for="taskC1">Task C1</label>
+				</div>
+			</div>
+		</div>
+	</form>
 	
 	<div class="container">
 		<div class="button-wrapper">
 			<input class="round-button" type="button" value="Start" id="start-button">
 		</div>
 		<div class="button-wrapper">
-			<input class="round-button" type="button" value="Finish" id="finish-button">
+			<input class="round-button" type="button" value="Finish" id="finish-button" disabled='true'>
 		</div>
 	</div>	
 
-	<input type="button" value="retrieve duration" id="retrieve-duration">
+	<form class="admin">
+		<fieldset >
+			<legend>Admin</legend>
+			<div class="admin-buttons">
+				<input type="button" value="clear tasks_logged" id="clear-tasks_logged" >
+				<input type="button" value="retrieve duration" id="retrieve-duration">	
+				<input type="button" value="localStorage>console" id="display-tasks_logged">		
+			</div>
+		</fieldset>
+	</form>
 	<p id="duration"></p>
+	
 </body>
 </html>

@@ -9,16 +9,10 @@
   font-size:20px;
   font-weight:bold;
   margin: 20px;
-
-
 }
 
 .round-button:focus {
   outline:0;
-}
-
-.round-button:hover {
-  background: #262626; /* not working*/
 }
 
 #start-button{
@@ -29,8 +23,20 @@
   background: red;
 }
 
-.round-button:hover {
-  background: #262626;
+#start-button:disabled{
+  background: #666;
+}
+
+#finish-button:disabled{
+  background: #666;
+}
+
+#start-button:hover{
+  cursor: pointer;
+}
+
+#finish-button:hover{
+  cursor: pointer;
 }
 
 #duration {
@@ -44,22 +50,56 @@
   height: 100%;
 }
 
-.button-wrapper {
-
-
-  padding-top: 50px;
+h1 {
+  font-size: 40px;
+  font-weight: normal;
+  text-align: left;
+  color: #FCFFF5;
+  background-color: #3E606F;
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 25px;
+  padding-left: 50px;
 }
 
+/* display/hide nested radio buttons for projects/tasks */
+.tasks { 
+  visibility: hidden; 
+  opacity:0;
+  transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+}
 
+:checked ~ .tasks {
+  visibility: visible;
+  opacity:1;
+  transition-delay:0s;
+  margin-left: 20px;
+}
 
-h1 {
-    font-size: 40px;
-    font-weight: normal;
-    text-align: left;
-    color: #FCFFF5;
-    background-color: #3E606F;
-    margin: 0;
-    padding-top: 30px;
-    padding-bottom: 25px;
-    padding-left: 50px;
+form {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+}
+
+.projects {
+  padding: 40px;
+
+}
+
+.tasks {
+  padding-top: 10px;  
+}
+
+.admin-buttons {  
+    display: flex;
+  justify-content: left;
+}
+
+.admin {
+  padding-top: 25px;
+}
+.admin-buttons input{ 
+  width: 150px;
+  margin: 10px;  
 }
