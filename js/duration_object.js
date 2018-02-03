@@ -1,7 +1,4 @@
-function testAlert(n){
-	console.log(n);
-}
-
+/* constuctor for a task duration object */
 function task_duration(project, task, date_completed, duration){
 	this.project = project;
 	this.task = task;

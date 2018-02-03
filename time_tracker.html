@@ -1,21 +1,26 @@
 <!-- 
-	Developer Assignment version 0.1 ~ SP 
+	TimeTracker: Developer Assignment version 1.0 ~ SP 
 
-	Click start button to initiate time, click finish to stop. Duration in 
-	minutes will be displayed.
+	Click start button to initiate timer, click finish to stop. 
 
-	Math.ceil doesn't seem to be working right - still getting long decimal fraction of time.
+	A duration object is created, consisting of Project, Task, Date_completed
+	and Duration. These are added to an array of objects and stringified into
+	local storage.
+
+	The array is then parsed and a table built displaying the stats, with
+	the most recent period logged first. 	
 -->
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Time Tracker</title>
 	<link rel="stylesheet" type="text/css" href="css/time_tracker.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/moment.min.js"></script>
 	<script type="text/javascript" src="js/button_actions.js"></script>
 	<script type="text/javascript" src="js/duration_object.js"></script>
-
-
+	<script type="text/javascript" src="js/display_statistics.js"></script>
 </head>
 <body>
 
@@ -23,10 +28,10 @@
 		<h1>
 			<em>TimeTracker</em>
 		</h1>
-
 	</div>
 
 	<form>
+	<div id="projects-container">
 		<div class="projects">
 			<input type="radio" name="project" value="projectA" id="projectA" />
 			<label for="projectA">Project A</label>
@@ -69,6 +74,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</form>
 	
 	<div class="container">
@@ -79,6 +85,13 @@
 			<input class="round-button" type="button" value="Finish" id="finish-button" disabled='true'>
 		</div>
 	</div>	
+
+	<div id="stats-table">
+		<table id='stats-summary' border='1'>
+			<tbody id="body">				
+			</tbody>
+		</table>
+	</div>
 
 	<form class="admin">
 		<fieldset >
@@ -91,6 +104,6 @@
 		</fieldset>
 	</form>
 	<p id="duration"></p>
-	
+
 </body>
 </html>

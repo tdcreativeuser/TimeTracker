@@ -24,11 +24,11 @@
 }
 
 #start-button:disabled{
-  background: #666;
+  background: #999;
 }
 
 #finish-button:disabled{
-  background: #666;
+  background: #999;
 }
 
 #start-button:hover{
@@ -55,7 +55,7 @@ h1 {
   font-weight: normal;
   text-align: left;
   color: #FCFFF5;
-  background-color: #3E606F;
+  background-color: #035096;
   margin: 0;
   padding-top: 30px;
   padding-bottom: 25px;
@@ -79,12 +79,17 @@ h1 {
 form {
   display: flex;
   justify-content: center;
-  /*align-items: center;*/
 }
 
+#projects-container{
+  margin: 20px;
+  background-color: lightblue;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
 .projects {
-  padding: 40px;
-
+  padding: 20px;
 }
 
 .tasks {
@@ -92,14 +97,46 @@ form {
 }
 
 .admin-buttons {  
-    display: flex;
+  display: flex;
   justify-content: left;
 }
 
 .admin {
   padding-top: 25px;
 }
+
 .admin-buttons input{ 
   width: 150px;
   margin: 10px;  
 }
+
+/*stats table properties*/
+#stats-table {
+  display: flex;
+  justify-content: center;
+}
+
+#stats-summary {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+}
+
+#stats-summary td, #stats-summary th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#stats-summary tr:nth-child(even){background-color: #f2f2f2;}
+
+#stats-summary tr:hover {background-color: #ddd;}
+
+#stats-summary th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: #FCFFF5;
+  background-color: #035096;
+}
+
+
