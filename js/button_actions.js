@@ -16,11 +16,12 @@ $(function(){
 			$('#start-button').attr('disabled', true);
 			$('#finish-button').attr('disabled', false);    
 			// console.log('start: ' + start_time);   
-
+			// console.log(JSON.parse(localStorage.getItem('buttonState')));
+			
 			/* disable radio buttons so that project/task can't be changed once initiated */			
 			$('input[name="project"]').attr('disabled', true);
 			$('input[name="task"]').attr('disabled', true);	
-		};
+		}
 	});
 });
 
@@ -37,6 +38,7 @@ $(function(){
 		$('#finish-button').attr('disabled', true);
 		$('#start-button').attr('disabled', false);	
 		// console.log('finish: ' + finish_time);
+		// console.log(JSON.parse(localStorage.getItem('buttonState')));
 
 		/* set current task variables */
 		var project = $('input[name=project]:checked').val();
@@ -58,6 +60,9 @@ $(function(){
 		/* parse JSON and populate stats_table from localStorage */
 		var temp = JSON.parse(localStorage.getItem('task_logged'));				
 		populate_stats_table(temp);
+
+		/* something cool */
+		aggregate_stats(temp);
 
 		/* re-enable radio buttons for project/task selection */
 		$('input[name="project"]').attr('disabled', false);

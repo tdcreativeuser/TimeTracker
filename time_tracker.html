@@ -18,8 +18,9 @@
 	<link rel="stylesheet" type="text/css" href="css/time_tracker.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/moment.min.js"></script>
-	<script type="text/javascript" src="js/display_statistics.js"></script>
+	<!-- the order of the following is crucial for preserving button state! -->
 	<script type="text/javascript" src="js/button_actions.js"></script>	
+	<script type="text/javascript" src="js/display_statistics.js"></script>	
 </head>
 <body>
 
@@ -88,6 +89,13 @@
 	<div id="stats-table">
 		<table id='stats-summary' border='1'>
 			<tbody id="body">				
+			</tbody>
+		</table>
+	</div>
+<br><br>
+	<div id="aggregated-table">
+		<table id='aggregated-summary' border='1'>
+			<tbody id="another_body">	<!-- change to a class and join with above, or remove -->			
 			</tbody>
 		</table>
 	</div>

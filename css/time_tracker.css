@@ -111,7 +111,7 @@ form {
 }
 
 /*stats table properties*/
-#stats-table {
+#stats-table, #aggregated-table {
   display: flex;
   justify-content: center;
 }
@@ -122,16 +122,26 @@ form {
   width: 70%;
 }
 
-#stats-summary td, #stats-summary th {
+#aggregated-summary {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 30%;
+}
+
+#stats-summary td, #stats-summary th, #aggregated-summary td, #aggregated-summary, th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#stats-summary tr:nth-child(even){background-color: #f2f2f2;}
+#stats-summary tr:nth-child(even), #aggregated-summary tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-#stats-summary tr:hover {background-color: #ddd;}
+#stats-summary tr:hover, #aggregated-summary tr:hover {
+  background-color: #ddd;
+}
 
-#stats-summary th {
+#stats-summary th, #aggregated-summary th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
