@@ -18,9 +18,8 @@
 	<link rel="stylesheet" type="text/css" href="css/time_tracker.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/moment.min.js"></script>
-	<script type="text/javascript" src="js/button_actions.js"></script>
-	<script type="text/javascript" src="js/duration_object.js"></script>
 	<script type="text/javascript" src="js/display_statistics.js"></script>
+	<script type="text/javascript" src="js/button_actions.js"></script>	
 </head>
 <body>
 
@@ -77,7 +76,7 @@
 	</div>
 	</form>
 	
-	<div class="container">
+	<div id="button-container">
 		<div class="button-wrapper">
 			<input class="round-button" type="button" value="Start" id="start-button">
 		</div>
@@ -100,10 +99,10 @@
 				<input type="button" value="clear tasks_logged" id="clear-tasks_logged" >
 				<input type="button" value="retrieve duration" id="retrieve-duration">	
 				<input type="button" value="localStorage>console" id="display-tasks_logged">		
+				<input type="button" value="clear localStorage" id="clear-localStorage">		
 			</div>
 		</fieldset>
 	</form>
-	<p id="duration"></p>
 
 </body>
 </html>
