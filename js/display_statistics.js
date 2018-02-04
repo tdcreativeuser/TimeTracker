@@ -5,8 +5,9 @@
 */
 
 $(document).ready(function(){
-	/*  Ensure that stats table is populated by any existing logged tasks on page load */
+	/*  Ensure that stats tables are populated by any existing logged tasks on page load */
 	populate_stats_table(JSON.parse(localStorage.getItem('task_logged')));
+	aggregate_stats(JSON.parse(localStorage.getItem('task_logged')));
 
 	/* 
 	Persist radio state in local storage 
@@ -36,7 +37,7 @@ $(document).ready(function(){
 		});
 		localStorage.setItem("buttonState", JSON.stringify(buttonState));
 	});
-	console.log(JSON.parse(localStorage.getItem('buttonState')));
+	// console.log(JSON.parse(localStorage.getItem('buttonState')));
 	$.each(buttonState, function(key, value) {
 		$("#" + key).attr('disabled', value);
 	});
@@ -115,59 +116,52 @@ function unique_tasks(tasks_logged){
 	array.
 */
 function aggregate_stats(tasks_logged){
-
-	var tasks = unique_tasks(tasks_logged);
-	var duration = 0;
-	var project = '';
-	var total_task_durations = [];
-	for(var i = 0; i < tasks.length; i++){
-		for(var j = 0; j < tasks_logged.length; j++){
-			if (tasks[i] == tasks_logged[j].task){
-				duration += tasks_logged[j].duration;
-				project = tasks_logged[j].project;
-			}
-		}		
-		total_task_durations.push([tasks[i], project, duration]);
-		duration = 0;
-		project = '';
+	if (tasks_logged != null) {
+		var tasks = unique_tasks(tasks_logged);
+		var duration = 0;
+		var project = '';
+		var total_task_durations = [];
+		for(var i = 0; i < tasks.length; i++){
+			for(var j = 0; j < tasks_logged.length; j++){
+				if (tasks[i] == tasks_logged[j].task){
+					duration += tasks_logged[j].duration;
+					project = tasks_logged[j].project;
+				}
+			}		
+			total_task_durations.push([tasks[i], project, duration]);
+			duration = 0;
+			project = '';
+		}
+		populate_stats_aggregated_table(total_task_durations);
+	} else {
+		$('#aggregated-table tbody').html('<tr><th>No tasks today buddy!</th></tr>');
 	}
-	total_task_durations = total_task_durations.sort(function (a, b) {
-		
-	});
-	console.log(total_task_durations);
-
-	populate_stats_aggregated_table(total_task_durations);
 }
 
 /*
-	Receive array of total durations, and sort from greatest to smallest.
+	Receive array of total durations (along with associated tasks and projects)
+	and sort from greatest to smallest.
 	Pass to HTML.
 	This fought me far more than it should, so ignored JQuery and went for 
 	a straight logical if :-/.
 */
-function populate_stats_aggregated_table(total_task_durations) {
-	if (total_task_durations != null) {
+function populate_stats_aggregated_table(total_task_durations) {	
+	total_task_durations.sort(function(x, y){
+		if (x[2] == y[2]) { 
+			return 0; 
+		}
+		if (x[2] < y[2]) {
+			return 1;
+		} else {		        
+			return -1;
+		}
+	});
 
-		total_task_durations.sort(function(x, y){
-			if (x[2] == y[2]) { 
-				return 0; 
-			}
-			if (x[2] < y[2]) {
-				return 1;
-			} else {		        
-				return -1;
-			}
-		});
-
-		var t = "<tr><th>Task</th><th>Project</th><th>Total Time Spent</th></tr>";
-		$.each(total_task_durations, function(i, val) {
-			t += '<tr><td>'+ val[0] +'</td><td>'+ val[1] +'</td><td>'+ val[2] +'</td></tr>';
-		});		
-		$('#aggregated-table tbody').html(t);
-
-	} else {
-		$('#aggregated-table tbody').html('<tr><th>No tasks today buddy!</th></tr>');
-	}
+	var t = "<tr><th>Task</th><th>Project</th><th>Total Time Spent</th></tr>";
+	$.each(total_task_durations, function(i, val) {
+		t += '<tr><td>'+ val[0] +'</td><td>'+ val[1] +'</td><td>'+ val[2] +'</td></tr>';
+	});		
+	$('#aggregated-table tbody').html(t);
 }
 
 /*
