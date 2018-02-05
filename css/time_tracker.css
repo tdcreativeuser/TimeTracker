@@ -3,6 +3,7 @@
 html {
   color: black;
   background-color: #F7F5E6;
+  min-width: 375px;
 }
 
 h1 {
@@ -191,6 +192,7 @@ legend {
 #stats-summary {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
+  border: 1px;
   width: 70%;
 }
 
@@ -199,6 +201,7 @@ legend {
   left: 8px;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
+  border: 1px;
   width: 70%;
 }
 
@@ -269,6 +272,10 @@ caption {
   }
 
   legend {
+    font-size: 12px;
+  }
+
+  td {
     font-size: 12px;
   }
 }

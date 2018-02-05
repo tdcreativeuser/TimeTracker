@@ -89,7 +89,7 @@ function populate_stats_table(tasks_logged) {
 			if (val.duration > 1){
 				m = "mins";
 			}
-			t += '<tr><td>'+moment(val.date_completed).format('MMMM Do YYYY')+'</td><td>'+val.project+'</td><td>'+val.task+'</td><td>'+val.duration+' '+m+'</td></tr>';
+			t += '<tr><td>'+moment(val.date_completed).format('MMM Do HH:mm')+'</td><td>'+val.project+'</td><td>'+val.task+'</td><td>'+val.duration+' '+m+'</td></tr>';
 		});
 		$('#stats-table tbody').html(t);
 	} else {

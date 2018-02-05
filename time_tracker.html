@@ -18,12 +18,13 @@
 <html>
 <head>
 	<title>Time Tracker</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/time_tracker.css">
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="js/moment.min.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/moment.min.js"></script>
 	<!-- the order of the following is crucial for preserving button state! -->
-	<script type="text/javascript" src="js/button_actions.js"></script>	
-	<script type="text/javascript" src="js/display_statistics.js"></script>	
+	<script src="js/button_actions.js"></script>	
+	<script src="js/display_statistics.js"></script>	
 </head>
 <body>
 
@@ -91,28 +92,33 @@
 			<input class="round-button" type="button" value="Start" id="start-button">
 		</div>
 		<div class="button-wrapper">
-			<input class="round-button" type="button" value="Finish" id="finish-button" disabled='true'>
+			<input class="round-button" type="button" value="Finish" id="finish-button" disabled>
 		</div>
 	</div>	
 
 	<div id="stats-table" >		
-		<table id='stats-summary' border='1'>
+		<table id='stats-summary'>
 			<caption>Recent Logs</caption>
 			<thead>
-				<tr><th>Date</th><th>Project</th><th>Task</th><th>Duration</th></tr>
-				<thead>
-					<tbody>				
-					</tbody>
-				</table>
-			</div>
-			<br><br>
-			<div id="aggregated-table" >		
-				<table id='aggregated-summary' border='1'>
-					<caption>Total Time Spent on Tasks</caption>
-					<tbody>				
-					</tbody>
-				</table>
-			</div>
+				<tr>
+					<th>Date</th>
+					<th>Project</th>
+					<th>Task</th>
+					<th>Duration</th>
+				</tr>
+			</thead>
+			<tbody>				
+			</tbody>
+		</table>
+	</div>
+	<br><br>
+	<div id="aggregated-table" >		
+		<table id='aggregated-summary'>
+			<caption>Total Time Spent on Tasks</caption>
+			<tbody>				
+			</tbody>
+		</table>
+	</div>
 
 <!-- Admin Buttons for testing purposes: 	
 	
