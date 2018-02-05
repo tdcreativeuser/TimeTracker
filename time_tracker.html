@@ -1,5 +1,5 @@
 <!-- 
-	TimeTracker: Developer Assignment version 0.9 ~ SP 
+	TimeTracker: Developer Assignment version 1.0 ~ SP 
 
 	Click start button to initiate timer, click finish to stop. 
 
@@ -19,7 +19,7 @@
 <head>
 	<title>Time Tracker</title>
 	<link rel="stylesheet" type="text/css" href="css/time_tracker.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="js/moment.min.js"></script>
 	<!-- the order of the following is crucial for preserving button state! -->
 	<script type="text/javascript" src="js/button_actions.js"></script>	
@@ -31,55 +31,61 @@
 		<h1>
 			<em>TimeTracker</em>
 		</h1>
+		<button type="button" id="clear-tasks_logged" >
+			<span class="button-text">clear tasks_logged</span>
+		</button>
 	</div>
 
 	<form>
-	<div id="projects-container">
-		<div class="projects">
-			<input type="radio" name="project" value="projectA" id="projectA" />
-			<label for="projectA">Project A</label>
-			<div class="tasks">
-				<div>
-					<input type="radio" name="task" value="taskA0" id="taskA0"/>
-					<label for="taskA0">Task A0</label>
+		<fieldset>
+			<legend>Select your Project and Task</legend>
+			<div id="projects-container">
+				<div class="projects">
+					<input type="radio" name="project" value="projectA" id="projectA" />
+					<label for="projectA">Project A</label>
+					<div class="tasks">
+						<div>
+							<input type="radio" name="task" value="taskA0" id="taskA0"/>
+							<label for="taskA0">Task A0</label>
+						</div>
+						<div>
+							<input type="radio" name="task" value="taskA1" id="taskA1"/>
+							<label for="taskA1">Task A1</label>
+						</div>
+					</div>
 				</div>
-				<div>
-					<input type="radio" name="task" value="taskA1" id="taskA1"/>
-					<label for="taskA1">Task A1</label>
+				<div class="projects">
+					<input type="radio" name="project" value="projectB" id="projectB" />
+					<label for="projectB">Project B</label>
+					<div class="tasks">
+						<div>
+							<input type="radio" name="task" value="taskB0" id="taskB0"/>
+							<label for="taskB0">Task B0</label>
+						</div>
+						<div>
+							<input type="radio" name="task" value="taskB1" id="taskB1"/>
+							<label for="taskB1">Task B1</label>
+						</div>
+					</div>
+				</div>
+				<div class="projects">
+					<input type="radio" name="project" value="projectC" id="projectC" />
+					<label for="projectC">Project C</label>
+					<div class="tasks">
+						<div>
+							<input type="radio" name="task" value="taskC0" id="taskC0"/>
+							<label for="taskC0">Task C0</label>
+						</div>
+						<div>
+							<input type="radio" name="task" value="taskC1" id="taskC1"/>
+							<label for="taskC1">Task C1</label>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="projects">
-			<input type="radio" name="project" value="projectB" id="projectB" />
-			<label for="projectB">Project B</label>
-			<div class="tasks">
-				<div>
-					<input type="radio" name="task" value="taskB0" id="taskB0"/>
-					<label for="taskB0">Task B0</label>
-				</div>
-				<div>
-					<input type="radio" name="task" value="taskB1" id="taskB1"/>
-					<label for="taskB1">Task B1</label>
-				</div>
-			</div>
-		</div>
-		<div class="projects">
-			<input type="radio" name="project" value="projectC" id="projectC" />
-			<label for="projectC">Project C</label>
-			<div class="tasks">
-				<div>
-					<input type="radio" name="task" value="taskC0" id="taskC0"/>
-					<label for="taskC0">Task C0</label>
-				</div>
-				<div>
-					<input type="radio" name="task" value="taskC1" id="taskC1"/>
-					<label for="taskC1">Task C1</label>
-				</div>
-			</div>
-		</div>
-	</div>
+		</fieldset>
 	</form>
-	
+	<h2 id="message">Click start when you're ready to work!</h2>
 	<div id="button-container">
 		<div class="button-wrapper">
 			<input class="round-button" type="button" value="Start" id="start-button">
@@ -89,20 +95,27 @@
 		</div>
 	</div>	
 
-	<div id="stats-table">
+	<div id="stats-table" >		
 		<table id='stats-summary' border='1'>
-			<tbody id="body">				
-			</tbody>
-		</table>
-	</div>
-<br><br>
-	<div id="aggregated-table">
-		<table id='aggregated-summary' border='1'>
-			<tbody id="another_body">	<!-- change to a class and join with above, or remove -->			
-			</tbody>
-		</table>
-	</div>
+			<caption>Recent Logs</caption>
+			<thead>
+				<tr><th>Date</th><th>Project</th><th>Task</th><th>Duration</th></tr>
+				<thead>
+					<tbody>				
+					</tbody>
+				</table>
+			</div>
+			<br><br>
+			<div id="aggregated-table" >		
+				<table id='aggregated-summary' border='1'>
+					<caption>Total Time Spent on Tasks</caption>
+					<tbody>				
+					</tbody>
+				</table>
+			</div>
 
+<!-- Admin Buttons for testing purposes: 	
+	
 	<form class="admin">
 		<fieldset >
 			<legend>Admin</legend>
@@ -113,7 +126,8 @@
 				<input type="button" value="clear localStorage" id="clear-localStorage">		
 			</div>
 		</fieldset>
-	</form>
+	</form> 
+-->
 
 </body>
 </html>

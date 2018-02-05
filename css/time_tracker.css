@@ -1,3 +1,108 @@
+
+
+html {
+  color: black;
+  background-color: #F7F5E6;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: normal;
+  text-align: left;
+  color: #E8E8E8;
+  background-color: #333A56;
+  margin: 0;
+  display: inline-block;
+  padding-top: 30px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+}
+
+h2 {
+  text-align: center;
+}
+
+/* banner properties */
+.mainBanner {
+  color: #E8E8E8;
+  background-color: #333A56;
+  width: 100%;
+  position: relative;
+}
+
+#clear-tasks_logged{
+  float: right;
+  margin: 10px;
+  position: relative;
+  top: 40px;
+  right: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: .75rem;
+  padding: .5rem .75rem;
+  display: block;
+  background-color: #52658F;
+  border: 1px solid transparent;
+  color: #E8E8E8;
+  font-weight: 300;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#clear-tasks_logged:hover{
+  color: #52658F;
+  background-color: #E8E8E8;
+}
+/* banner properties */
+
+/* form properties for project/task radio buttons */
+form {
+  display: flex;
+  justify-content: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+fieldset {
+  margin: 20px ;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  border-color: #333A56;
+}
+
+legend {
+  font-weight: bold;
+}
+
+#projects-container{  
+  display: flex;
+  justify-content: center;
+}
+.projects {
+  padding: 20px;
+}
+.tasks {
+  padding-top: 10px;  
+}
+
+/* display/hide nested radio buttons for projects/tasks */
+.tasks { 
+  visibility: hidden; 
+  opacity:0;
+  transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+}
+
+:checked ~ .tasks {
+  visibility: visible;
+  opacity:1;
+  transition-delay:0s;
+  margin-left: 20px;
+}
+/* end form properties for project/task radio buttons */
+
+/* start/finish button properties */
 .round-button {
   display:inline-block;
   width:100px;
@@ -27,16 +132,26 @@
   background: #999;
 }
 
+#start-button:disabled:hover{
+  box-shadow: 0 0 3px gray; 
+}
+
 #finish-button:disabled{
-  background: #999;
+  background: #999;  
+}
+
+#finish-button:disabled:hover{
+  box-shadow: 0 0 3px gray;  
 }
 
 #start-button:hover{
   cursor: pointer;
+  box-shadow: 0 0 15px gray;
 }
 
 #finish-button:hover{
   cursor: pointer;
+  box-shadow: 0 0 15px gray;
 }
 
 #duration {
@@ -49,53 +164,9 @@
   align-items: center;
   height: 100%;
 }
+/* end start/finish button properties */
 
-h1 {
-  font-size: 40px;
-  font-weight: normal;
-  text-align: left;
-  color: #FCFFF5;
-  background-color: #035096;
-  margin: 0;
-  padding-top: 30px;
-  padding-bottom: 25px;
-  padding-left: 50px;
-}
-
-/* display/hide nested radio buttons for projects/tasks */
-.tasks { 
-  visibility: hidden; 
-  opacity:0;
-  transition:visibility 0s linear 0.5s,opacity 0.5s linear;
-}
-
-:checked ~ .tasks {
-  visibility: visible;
-  opacity:1;
-  transition-delay:0s;
-  margin-left: 20px;
-}
-
-form {
-  display: flex;
-  justify-content: center;
-}
-
-#projects-container{
-  margin: 20px;
-  background-color: lightblue;
-  width: 70%;
-  display: flex;
-  justify-content: center;
-}
-.projects {
-  padding: 20px;
-}
-
-.tasks {
-  padding-top: 10px;  
-}
-
+/* admin button properties */
 .admin-buttons {  
   display: flex;
   justify-content: left;
@@ -109,6 +180,7 @@ form {
   width: 150px;
   margin: 10px;  
 }
+/* end admin button properties */
 
 /*stats table properties*/
 #stats-table, #aggregated-table {
@@ -123,9 +195,11 @@ form {
 }
 
 #aggregated-summary {
+  position: relative;
+  left: 8px;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 30%;
+  width: 70%;
 }
 
 #stats-summary td, #stats-summary th, #aggregated-summary td, #aggregated-summary, th {
@@ -133,8 +207,12 @@ form {
   padding: 8px;
 }
 
-#stats-summary tr:nth-child(even), #aggregated-summary tr:nth-child(even) {
-  background-color: #f2f2f2;
+#stats-summary tr:nth-child(even) {
+  background-color: #E8E8E8;
+}
+
+#aggregated-summary tr:nth-child(odd) {
+  background-color: #E8E8E8;
 }
 
 #stats-summary tr:hover, #aggregated-summary tr:hover {
@@ -144,9 +222,53 @@ form {
 #stats-summary th, #aggregated-summary th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
-  color: #FCFFF5;
-  background-color: #035096;
+  text-align: center;
+  color: #E8E8E8;
+  background-color: #333A56;
 }
 
+caption {
+  text-align: left;
+  padding: 5px;  
+  font-weight: bold;
+}
+/* end stats table properties */
 
+/*Responsive changes to screen-size*/
+@media screen and (max-width: 650px){
+  .projects {
+    display: block;
+    float: none;
+    padding: 10px;
+  }
+  #projects-container{  
+    display: block;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px){
+  #clear-tasks_logged{    
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    top: 20px;
+  }
+
+  .button-text {
+    display: none;
+  }
+
+  h1 {
+    font-size: 30px;
+    padding-left: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  legend {
+    font-size: 12px;
+  }
+}

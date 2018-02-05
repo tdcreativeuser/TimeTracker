@@ -50,7 +50,11 @@ $(document).ready(function(){
 	if (start_state != null && start_state['start-button'] === true){
 		$('input[name="project"]').attr('disabled', true);
 		$('input[name="task"]').attr('disabled', true);
-	}	
+		/* change message from 'click start', to 'logging task' */
+		$('#message').html('Logging task ... ');
+		} else {
+			$('#message').html("Click start when you're ready to work!");
+	}
 });
 
 /*
@@ -79,13 +83,17 @@ function task_duration(project, task, date_completed, duration){
 */
 function populate_stats_table(tasks_logged) {	
 	if (tasks_logged != null) {
-		var t = "<tr><th>Date</th><th>Project</th><th>Task</th><th>Duration</th></tr>";
+		var t = "";
 		$.each(tasks_logged.reverse(), function(i, val) {
-			t += '<tr><td>'+moment(val.date_completed).format('MMMM Do YYYY')+'</td><td>'+val.project+'</td><td>'+val.task+'</td><td>'+val.duration+'</td></tr>';
+			var m = "min";
+			if (val.duration > 1){
+				m = "mins";
+			}
+			t += '<tr><td>'+moment(val.date_completed).format('MMMM Do YYYY')+'</td><td>'+val.project+'</td><td>'+val.task+'</td><td>'+val.duration+' '+m+'</td></tr>';
 		});
 		$('#stats-table tbody').html(t);
 	} else {
-		$('#stats-table tbody').html('<tr><th>No tasks completed today</th></tr>');
+		$('#stats-table tbody').html('<tr><td colspan="4" style="text-align:center">No tasks completed today</td></tr>');
 	}
 }
 
@@ -134,7 +142,7 @@ function aggregate_stats(tasks_logged){
 		}
 		populate_stats_aggregated_table(total_task_durations);
 	} else {
-		$('#aggregated-table tbody').html('<tr><th>No tasks today buddy!</th></tr>');
+		$('#aggregated-table').hide();
 	}
 }
 
@@ -158,8 +166,13 @@ function populate_stats_aggregated_table(total_task_durations) {
 	});
 
 	var t = "<tr><th>Task</th><th>Project</th><th>Total Time Spent</th></tr>";
+	
 	$.each(total_task_durations, function(i, val) {
-		t += '<tr><td>'+ val[0] +'</td><td>'+ val[1] +'</td><td>'+ val[2] +'</td></tr>';
+		var m = "min";
+		if (val[2] > 1){
+			m = "mins";
+		}
+		t += '<tr><td>'+ val[0] +'</td><td>'+ val[1] +'</td><td>'+ val[2] + ' ' + m + '</td></tr>';
 	});		
 	$('#aggregated-table tbody').html(t);
 }

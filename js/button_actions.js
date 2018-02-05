@@ -1,4 +1,3 @@
-
 /* 
 	ensure project/task are selected from radio buttons.
 	store the start time to localStorage. 
@@ -21,6 +20,11 @@ $(function(){
 			/* disable radio buttons so that project/task can't be changed once initiated */			
 			$('input[name="project"]').attr('disabled', true);
 			$('input[name="task"]').attr('disabled', true);	
+
+			/* change start message to 'Logging ...' */
+			$('#message').fadeOut(function(){
+				$(this).text('Logging task ... ').fadeIn();
+			});
 		}
 	});
 });
@@ -61,12 +65,18 @@ $(function(){
 		var temp = JSON.parse(localStorage.getItem('task_logged'));				
 		populate_stats_table(temp);
 
-		/* something cool */
+		/* call to populate total time per task table, and ensure it's shown */
 		aggregate_stats(temp);
+		$('#aggregated-table').fadeIn();
 
 		/* re-enable radio buttons for project/task selection */
 		$('input[name="project"]').attr('disabled', false);
 		$('input[name="task"]').attr('disabled', false);	
+
+		/* revert to start message */
+		$('#message').fadeOut(function(){
+			$(this).text("Click start when you're ready to work!").fadeIn();
+		});		
 	});
 });	
 
@@ -96,6 +106,7 @@ $(function(){
 	$('#clear-tasks_logged').click(function(){
 		localStorage.removeItem("task_logged");
 		populate_stats_table(JSON.parse(localStorage.getItem('task_logged')));
+		aggregate_stats(JSON.parse(localStorage.getItem('task_logged')));
 		console.log("tasks_logged cleared");
 	});
 });	
@@ -110,7 +121,8 @@ $(function(){
 /* clear localStorage */
 $(function(){
 	$('#clear-localStorage').click(function(){	
-		localStorage.clear();			
+		localStorage.clear();	
+
 		console.log('localStorage cleared');
 	});
 });	
