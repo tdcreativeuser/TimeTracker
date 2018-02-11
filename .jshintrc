@@ -1,0 +1,14 @@
+{
+  "browser": true,
+  "undef": true,
+  "unused": true,
+  "globalstrict": true,
+  "globals": {
+    "$": false,
+    "jquery": false,
+    "moment": false,
+    "alert": false,
+    "localStorage": false,
+    "console": false    
+  }
+}

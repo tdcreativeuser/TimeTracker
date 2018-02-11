@@ -3,14 +3,15 @@
 	store the start time to localStorage. 
 	handle button states.
 */
+"use strict";
 $(function(){
 	$('#start-button').click(function(){
 
 		// first check to ensure that project and task are set
-		if (!$('input[name=task]:checked').length > 0)  {
+		if ($('input[name=task]:checked').length === 0){
 			alert('Ensure you have selected a Project and a Task');
 		} else {
-			start_time = new Date();  
+			var start_time = new Date();  
 			localStorage.setItem('start_time', start_time);   
 			$('#start-button').attr('disabled', true);
 			$('#finish-button').attr('disabled', false);    
@@ -34,10 +35,15 @@ $(function(){
 	create new task_duration object and add to stringified array.
 	populate the stats_table with parsed array.
 	handle button states.
+
+	the global declarations tell 
 */
 $(function(){
 	$('#finish-button').click(function(){
-		finish_time = new Date();  
+		/* global Task_duration */
+		/* global populate_stats_table */
+		/* global aggregate_stats */
+		var finish_time = new Date();  
 		localStorage.setItem('finish_time', finish_time);
 		$('#finish-button').attr('disabled', true);
 		$('#start-button').attr('disabled', false);	
@@ -52,11 +58,11 @@ $(function(){
 		// console.log(project, task, date_completed, duration);
 
 		/* create new duration object */
-		new_task = new task_duration(project, task, date_completed, duration);
+		var new_task = new Task_duration(project, task, date_completed, duration);
 		// console.log(new_task);
 
 		/* save to localStorage (checking first if there exists an array already) */
-		tasks_logged = JSON.parse(localStorage.getItem('task_logged')) || [];
+		var tasks_logged = JSON.parse(localStorage.getItem('task_logged')) || [];
 		tasks_logged.push(new_task);
 		localStorage.setItem('task_logged', JSON.stringify(tasks_logged));
 		// console.log(tasks_logged);
@@ -96,7 +102,7 @@ $(function(){
 /* calculate and display duration based on start and finish times in localStorage */
 $(function(){
 	$('#retrieve-duration').click(function(){
-		duration = Math.ceil((Date.parse(localStorage.finish_time)-Date.parse(localStorage.start_time))/60000);
+		var duration = Math.ceil((Date.parse(localStorage.finish_time)-Date.parse(localStorage.start_time))/60000);
 		console.log("Most recent duration: " + duration + " mins");
 	});
 });	
@@ -122,7 +128,6 @@ $(function(){
 $(function(){
 	$('#clear-localStorage').click(function(){	
 		localStorage.clear();	
-
 		console.log('localStorage cleared');
 	});
 });	

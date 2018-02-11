@@ -3,7 +3,7 @@
 | Document Ready Variables
 |----------------------------------
 */
-
+"use strict";
 $(document).ready(function(){
 	/*  Ensure that stats tables are populated by any existing logged tasks on page load */
 	populate_stats_table(JSON.parse(localStorage.getItem('task_logged')));
@@ -68,8 +68,12 @@ $(document).ready(function(){
 
 /* 
 Constuctor for a task duration object 
+Note 'exported Task_duration' tells jshint that the constructor is to be used elsewhere
+thus avoiding an 'is defined but never used' warning.
 */
-function task_duration(project, task, date_completed, duration){
+
+/* exported Task_duration */
+function Task_duration(project, task, date_completed, duration){
 	this.project = project;
 	this.task = task;
 	this.date_completed = date_completed;
